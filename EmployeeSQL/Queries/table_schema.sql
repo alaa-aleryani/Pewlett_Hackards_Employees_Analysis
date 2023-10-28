@@ -31,20 +31,23 @@ CREATE TABLE employees(
 
 SELECT * FROM employees;  
 -- ---------------------------------------------------------
--- Create the departments employees table					
+-- Create the departments employees table	
 CREATE TABLE dept_emp(
 	emp_no INT NOT NULL,  					            
 	dept_no VARCHAR(4) NOT NULL, 
-	FOREIGN KEY (emp_no, dept_no) REFERENCES employees(emp_no, dept_no),
-	PRIMARY KEY (dept_no, emp_no)          
+	FOREIGN KEY (emp_no) REFERENCES employees(emp_no),
+	FOREIGN KEY (dept_no) REFERENCES departments(dept_no),
+	PRIMARY KEY (emp_no, dept_no)          
 );
 
 SELECT * FROM dept_emp;   
 -- ---------------------------------------------------------
 -- Create the departments manager table
 CREATE TABLE dept_manager(
-	dept_no VARCHAR(4) REFERENCES departments(dept_no),
-	emp_no INT NOT NULL REFERENCES employees(emp_no),
+	dept_no VARCHAR(4), 
+	emp_no INT NOT NULL, 
+	FOREIGN KEY (dept_no) REFERENCES departments(dept_no),
+	FOREIGN KEY (emp_no) REFERENCES employees(emp_no),
 	PRIMARY KEY (dept_no, emp_no)
 ); 
 
